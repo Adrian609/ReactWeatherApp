@@ -11,7 +11,18 @@ class ZipForm extends React.Component {
         };
 
         this.inputUpdated = this.inputUpdated.bind(this);
+        this.submitZipCode = this.submitZipCode.bind(this);
     }
+
+submitZipCode(e){
+    e.preventDefault();
+
+    const {zipcode}=this.state;
+    const{onSubmit}=this.props;
+
+    onSubmit(zipcode);
+    this.setState({zipcode: ''});
+}
 
 inputUpdated(e){
     const {value} = e.target;
@@ -21,8 +32,8 @@ inputUpdated(e){
 
     render(){
         return(
-            <div className="ZipForm">
-                <form>
+            <div className="zip-form">
+                <form onSubmit={this.submitZipCode}>
                     <label htmlFor="zipcode">Zip Code</label>
                     <input
                       className = "form-control"
